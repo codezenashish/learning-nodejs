@@ -2,7 +2,7 @@
 
 A Node.js project for learning backend development with Express and MongoDB.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 learning-nodejs/
@@ -23,7 +23,7 @@ learning-nodejs/
 └── README.md         # Project documentation
 ```
 
-## 🚀 Technologies Used
+## Technologies Used
 
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
@@ -32,13 +32,13 @@ learning-nodejs/
 - **dotenv** - Environment variables management
 - **Nodemon** - Development auto-reload
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js (v14 or higher)
 - MongoDB installed and running
 - npm or yarn package manager
 
-## 🔧 Installation
+## Installation
 
 1. Clone the repository:
 ```bash
@@ -59,7 +59,7 @@ PORT=3000
 
 4. Update environment variables according to your setup.
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Development Mode
 ```bash
@@ -68,7 +68,7 @@ npm run dev
 
 The server will start with nodemon, which automatically restarts on file changes.
 
-## 📚 Learning Topics Covered
+## Learning Topics Covered
 
 - Setting up a Node.js project with ES6 modules
 - Connecting to MongoDB using Mongoose
@@ -79,16 +79,16 @@ The server will start with nodemon, which automatically restarts on file changes
 - RESTful API design
 - Database modeling with Mongoose
 
-## 🛠️ Development
+## Development
 
 - The project uses ES6 modules (`"type": "module"` in package.json)
 - Nodemon is configured for automatic server restart during development
 - Environment variables are loaded using dotenv
 
-## 📝 Notes
+## Notes
 
 This is a learning project focused on understanding Node.js backend development fundamentals.
 
-## 📄 License
+## License
 
 ISC
