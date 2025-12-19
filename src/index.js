@@ -10,7 +10,7 @@ dotenv.config({
 });
 connectDB();
 
-/*
+
 
 (async () => {
   try {
@@ -21,4 +21,4 @@ connectDB();
   }
 })();
 
-*/
+
