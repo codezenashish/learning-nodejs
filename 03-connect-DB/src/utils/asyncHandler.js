@@ -1,7 +1,5 @@
 // const asyncHandler = () => {};
 
-import { request } from "express";
-
 // export { asyncHandler };
 
 const asyncHandler = (func) => async (req, res, next) => {
@@ -15,10 +13,4 @@ const asyncHandler = (func) => async (req, res, next) => {
   }
 };
 
-// const asyncHandler2 = (requestHandler) => {
-//   (req, res, next) => {
-//     Promise.resolve(requestHandler)(req, res, next).catch((error) =>
-//       next(error)
-//     );
-//   };
-// };
+export { asyncHandler };
