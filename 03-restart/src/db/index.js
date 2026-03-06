@@ -3,6 +3,10 @@ import { DB_NAME } from "../costants.js";
 
 const connectDB = async () => {
   try {
+    if(!process.env.MONGODB_URI){
+      console.log('env undefined');
+      
+    }
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGODB_URI}/${DB_NAME}`
     );
