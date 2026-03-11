@@ -1,21 +1,24 @@
 import mongoose from "mongoose";
-import { DB_NAME } from "../costants.js";
+import { DATABASE_NAME } from "../costants.js";
 
-const connectDB = async () => {
+const connectToDatabase = async () => {
   try {
-    if(!process.env.MONGODB_URI){
-      console.log('env undefined');
-      
+    if (!process.env.MONGODB_URI) {
+      console.log("MONGODB_URI environment variable is undefined");
+      return;
     }
-    const connectionInstance = await mongoose.connect(
-      `${process.env.MONGODB_URI}/${DB_NAME}`
+
+    const databaseConnection = await mongoose.connect(
+      `${process.env.MONGODB_URI}/${DATABASE_NAME}`
     );
+
     console.log(
-      `\. mongoDB connected !! host: ${connectionInstance.connection.host}`
+      `MongoDB connected successfully. Host: ${databaseConnection.connection.host}`
     );
-  } catch (error) {
-    console.log("mongoDB connection error", error);
-    Process.exit(1);
+  } catch (databaseConnectionError) {
+    console.log("MongoDB connection error:", databaseConnectionError);
+    process.exit(1);
   }
 };
-export default connectDB;
+
+export default connectToDatabase;

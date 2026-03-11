@@ -1,13 +1,17 @@
 import multer from "multer";
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/temp");
+const TEMP_UPLOAD_DIRECTORY = "./public/temp";
+
+const diskStorageConfiguration = multer.diskStorage({
+  destination: function setUploadDestination(request, file, callback) {
+    callback(null, TEMP_UPLOAD_DIRECTORY);
   },
-  filename: function (req, file, cb) {
-    // const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.originalname);
+
+  filename: function setUploadedFileName(request, file, callback) {
+    callback(null, file.originalname);
   },
 });
 
-export const upload = multer({ storage: storage });
+export const fileUploadMiddleware = multer({
+  storage: diskStorageConfiguration,
+});

@@ -1,1 +1,1 @@
-export const DB_NAME = "learning-node";
+export const DATABASE_NAME = "learning-node";
