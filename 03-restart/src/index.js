@@ -8,7 +8,7 @@ LOAD ENVIRONMENT VARIABLES
 -----------------------------------------
 */
 dotenv.config({
-  path: "./env",
+  path: "./.env",
 });
 
 /*
