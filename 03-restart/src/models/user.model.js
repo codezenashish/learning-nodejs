@@ -58,13 +58,11 @@ const userSchema = new Schema(
 PASSWORD HASHING MIDDLEWARE
 ------------------------------------------------
 */
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
 
   const hashedPassword = await bcrypt.hash(this.password, 10);
   this.password = hashedPassword;
-
-  next();
 });
 
 /*
