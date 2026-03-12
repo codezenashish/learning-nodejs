@@ -52,5 +52,8 @@ STATIC FILES
 -----------------------------------------
 */
 application.use(express.static(STATIC_FILES_DIRECTORY));
+import userRouter from "./routes/user.routs.js";
+// routes declaration
+application.use("/api/v1/users", userRouter);
 
 export { application };
