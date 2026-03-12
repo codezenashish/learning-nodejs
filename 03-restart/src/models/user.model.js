@@ -31,6 +31,10 @@ const userSchema = new Schema(
       type: String, // URL of stored profile image (Cloudinary or other storage)
       required: true,
     },
+    coverImage: {
+      type: String, // URL of stored profile image (Cloudinary or other storage)
+      required: true,
+    },
 
     password: {
       type: String,
