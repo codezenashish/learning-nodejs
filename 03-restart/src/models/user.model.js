@@ -58,7 +58,7 @@ const userSchema = new Schema(
 PASSWORD HASHING MIDDLEWARE
 ------------------------------------------------
 */
-userSchema.pre("save", async function hashPasswordBeforeSaving(next) {
+userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   const hashedPassword = await bcrypt.hash(this.password, 10);
