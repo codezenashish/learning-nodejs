@@ -74,7 +74,7 @@ userSchema.pre("save", async function () {
 PASSWORD VALIDATION METHOD
 ------------------------------------------------
 */
-userSchema.methods.isPasswordValid = async function compareUserPassword(
+userSchema.methods.isPasswordCorrect = async function compareUserPassword(
   plainTextPassword
 ) {
   return bcrypt.compare(plainTextPassword, this.password);
