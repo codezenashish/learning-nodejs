@@ -32,7 +32,7 @@ const uploadFileToCloudinary = async (localFilePath) => {
       "File uploaded successfully to Cloudinary:",
       uploadResponse.url
     );
-
+    fs.unlinkSync(localFilePath);
     return uploadResponse;
   } catch (uploadError) {
     console.error("Cloudinary upload failed:", uploadError);
