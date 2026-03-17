@@ -3,6 +3,7 @@ import {
   registerUser,
   loginUser,
   logoutUser,
+  refreshAccessToken,
 } from "../controllers/user.controller.js";
 import { fileUploadMiddleware } from "../middlewares/multer.moddleware.js";
 import { verifyJWT } from "../controllers/auth.controller.js";
