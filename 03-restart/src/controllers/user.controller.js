@@ -261,7 +261,7 @@ const updateCoverImageDetails = asyncHandler(async (req, res) => {
 
   const coverImage = await uploadFileToCloudinary(coverImageLocalPath);
   if (!coverImage) {
-    throw new ApiError(400, "cover image file is required");
+    throw new ApiError(400, "cover image finle is required");
   }
 
   const user = await User.findByIdAndUpdate(
@@ -274,7 +274,74 @@ const updateCoverImageDetails = asyncHandler(async (req, res) => {
     { new: true }
   ).select("-password");
 
-  return res.status(200).json(new ApiResponse(200, user, "cover image updated"));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "cover image updated"));
+});
+
+const getUserChannelProfile = asyncHandler(async (req, res) => {
+  const { username } = req.params;
+  if (!username) {
+    throw new ApiError(404, "user not found");
+  }
+  const channel = User.aggregate([
+    {
+      $match: {
+        username: username?.toLowerCase(),
+      },
+    },
+    {
+      $lookup: {
+        from: "Subsciption",
+        localField: "_id",
+        foreignField: "channel",
+        as: "subscribers",
+      },
+    },
+    {
+      $lookup: {
+        from: "Subsciptions",
+        localField: "_id",
+        foreignField: "subscriber",
+        as: "subscribedTo",
+      },
+    },
+    {
+      $addFields: {
+        subscribersCount: {
+          $size: "$subscribers",
+        },
+        subscribedToCount: {
+          $size: "$subscribedTo",
+        },
+        isSubscribed: {
+          $cond: {
+            if: { $in: [req.user?._id, "$subscribers.subscriber"] },
+            then: true,
+            else: false,
+          },
+        },
+      },
+    },
+    {
+      $project: {
+        fullName: 1,
+        username: 1,
+        email: 1,
+        avatar: 1,
+        coverImage: 1,
+        subscribersCount: 1,
+        subscribedToCount: 1,
+        isSubscribed: 1,
+      },
+    },
+  ]);
+  if (!channel?.length) {
+    throw new ApiError(404, "channel dose not exist");
+  } 
+  return res
+    .status(200)
+    .json(new ApiResponse(200, channel[0], "user channel profile"));
 });
 
 export {
