@@ -129,7 +129,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     { $set: { refreshToken: undefined } },
-    { new: true }
+    { returnDocument: "after" }
   );
 
   const options = {
@@ -224,7 +224,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         email: email,
       },
     },
-    { new: true }
+    { returnDocument: "after" }
   ).select("-password");
   return res.status(200).json(new ApiError(200, user, "account details"));
 });
@@ -247,7 +247,7 @@ const updateAvatarDetails = asyncHandler(async (req, res) => {
         avatar: avatar.url,
       },
     },
-    { new: true }
+    { returnDocument: "after" }
   ).select("-password");
 
   return res.status(200).json(new ApiError(200, user, "avatar updated"));
@@ -271,7 +271,7 @@ const updateCoverImageDetails = asyncHandler(async (req, res) => {
         coverImage: coverImage.url,
       },
     },
-    { new: true }
+    { returnDocument: "after" }
   ).select("-password");
 
   return res
